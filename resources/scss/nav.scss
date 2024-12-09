@@ -1,0 +1,28 @@
+// resources/scss/nav.scss
+
+#app {
+    height:100%;
+}
+
+.nav-link {
+    //@apply text-sm font-light  flex items-center gap-x-1 text-sm font-semibold text-gray-900;
+    @apply flex items-center gap-x-1 text-sm font-light text-gray-900 dark:text-gray-100 hover:text-indigo-500 dark:hover:text-indigo-300;
+}
+
+
+svg.logo-svg {
+    fill:#000;
+    stroke:#000;
+}
+
+
+.dark {
+    svg.logo-svg {
+        fill:#fff;
+        stroke:#fff;
+    }
+}
+
+.nav-link-flyout-primary {
+    @apply flex gap-x-4 py-2 text-sm font-semibold principal-text-color hover-text-indigo
+}

@@ -1,0 +1,37 @@
+.input-outlined {
+    @apply block 
+    w-full 
+    rounded-md 
+    border-solid border-gray-500/50 focus:border-indigo-900 
+    focus:ring-indigo-700
+    bg-black/10  focus:bg-black/20 px-3 pt-6 pb-2 text-indigo-500 sm:text-sm
+}
+
+
+// Shared Borders Form
+
+.-space-y-px {
+    &.form-shared-borders {
+
+        & > *:not(:first-child):not(:last-child),
+        & > .relative:not(:first-child):not(:last-child) .input-outlined {
+
+            border-radius: 0;
+        }
+
+
+        & > *:first-child,
+        & > .relative:first-child .input-outlined {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        & > *:last-child,
+        &> .relative:last-child .input-outlined {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    }
+}
+
