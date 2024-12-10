@@ -1,0 +1,23 @@
+.principal-text-color {
+    @apply text-balance tracking-tight text-gray-900 dark:text-gray-300
+}
+
+.secondary-text-color {
+    @apply text-balance tracking-tight text-gray-800 dark:text-gray-400
+}
+
+.hover-text-indigo {
+    @apply hover:text-indigo-500 dark:hover:text-indigo-300
+}
+
+.bg-50-default {
+    @apply bg-white/50 dark:bg-gray-900/50
+}
+
+.auth-logo {
+    
+    svg {
+        @apply fill-indigo-600 dark:fill-white
+    }
+
+}

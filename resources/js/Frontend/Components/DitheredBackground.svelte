@@ -1,19 +1,22 @@
 <script>
+
+// resources/js/Frontend/Components/DitheredBackground.svelte
+
     import { onMount, onDestroy } from 'svelte';
 
     // Configuration
-    const DOT_SIZE = 12;             
-    const DOT_SPACING = 24;          
-    const INNER_GRADIENT_DOTS = 2;    
-    const RIPPLE_SPEED = 0.03;      
-    const RIPPLE_FREQUENCY = 0.033; 
+    const DOT_SIZE = 12; 
+    const DOT_SPACING = 24
+    const INNER_GRADIENT_DOTS = 2;
+    const RIPPLE_SPEED = 0.02;
+    const RIPPLE_FREQUENCY = 0.033;
 
     // RGBA color configurations
     const colors = {
         dark: {
             background: 'rgba(17, 24, 39, 1)', // #111827
-            dot: 'rgba(94, 94, 94, 1)',       // #404040
-            fadeOut: 'rgba(64, 64, 64, 0.4)'  // Transparent version of dot color
+            dot: 'rgba(192, 192, 192, 1)',    // A lighter gray
+            fadeOut: 'rgba(64, 64, 64, 0.6)'  // Less transparent fade-out
         },
         light: {
             background: 'rgba(255, 255, 255, 1)', // #ffffff
@@ -23,7 +26,8 @@
     };
 
     // Theme state
-    let isDarkMode = false;
+    //let isDarkMode = false;
+
     let currentBackground = '';
     
     // Canvas setup
@@ -35,28 +39,54 @@
     let mousePos = { x: -1000, y: -1000 };
     let animationId = null;
     let time = 0;
+    //let isDarkMode = localStorage.getItem('theme') === 'dark'; // Initial theme detection
+    let isDarkMode = false;
+
+// Reactive theme colors
+    $: themeColors = isDarkMode ? colors.dark : colors.light;
 
     // Reference to the debounced mouse move handler
     let debouncedHandleMouseMove;
 
+        // Theme management - Updated to be more reactive
+    function handleThemeChange(event) {
+        isDarkMode = event.detail.theme === 'dark';
+        updateTheme();
+        if (ctx) {
+            draw(); // Trigger immediate redraw with new theme
+        }
+    }
+
     // Theme management
+    // function updateTheme() {
+    //     const theme = localStorage.getItem('theme') || 'light';
+    //     isDarkMode = theme === 'dark';
+        
+    //     const customBg = localStorage.getItem('backgroundColor');
+    //     if (customBg) {
+    //         currentBackground = customBg;
+    //         if (document.body) {
+    //             document.body.style.backgroundColor = currentBackground;
+    //         }
+    //     } else {
+    //         currentBackground = getThemeColors().background;
+    //         if (document.body) {
+    //             document.body.style.backgroundColor = currentBackground;
+    //         }
+    //     }
+    // }
+
+
     function updateTheme() {
         const theme = localStorage.getItem('theme') || 'light';
         isDarkMode = theme === 'dark';
+        currentBackground = getThemeColors().background;
         
-        const customBg = localStorage.getItem('backgroundColor');
-        if (customBg) {
-            currentBackground = customBg;
-            if (document.body) {
-                document.body.style.backgroundColor = currentBackground;
-            }
-        } else {
-            currentBackground = getThemeColors().background;
-            if (document.body) {
-                document.body.style.backgroundColor = currentBackground;
-            }
+        if (document.body) {
+            document.body.style.backgroundColor = currentBackground;
         }
     }
+
 
     function handleStorageChange(e) {
         if (e.key === 'theme' || e.key === 'backgroundColor') {
@@ -64,13 +94,19 @@
         }
     }
 
+    // function getThemeColors() {
+    //     const themeColors = isDarkMode ? colors.dark : colors.light;
+    //     return {
+    //         ...themeColors,
+    //         background: currentBackground || themeColors.background
+    //     };
+    // }
+
+
     function getThemeColors() {
-        const themeColors = isDarkMode ? colors.dark : colors.light;
-        return {
-            ...themeColors,
-            background: currentBackground || themeColors.background
-        };
+        return isDarkMode ? colors.dark : colors.light;
     }
+
 
     function initializeDots() {
         if (!canvas) return;
@@ -112,7 +148,7 @@
 
     function calculateDotColor(dot) {
         const theme = getThemeColors();
-        const baseColor = isDarkMode ? 64 : 115; // Base color value for dots
+        const baseColor = isDarkMode ? 128 : 115; // Base color value for dots
 
         if (dot.isClosest) {
             // Subtle highlight for closest dot
@@ -221,8 +257,11 @@
         initializeDots();
     }
 
-    // Initialization Function
-    function initialize() {
+
+    /**
+     * 
+     */ 
+    const initialize = () => {
         if (canvas) {
             updateTheme();
             ctx = canvas.getContext('2d');
@@ -247,28 +286,53 @@
         }
     }
 
+
+    /**
+     * 
+     */ 
     onMount(() => {
+        // Initial theme setup
+        updateTheme();
+        
+        // Set up theme change listener
+        window.addEventListener('themeChange', handleThemeChange);
+        
         if (document.readyState === 'complete') {
-            // If the load event has already fired, initialize immediately
             initialize();
         } else {
-            // Wait for the load event before initializing
             window.addEventListener('load', initialize);
-            
-            // Cleanup: Remove the event listener if the component is destroyed before load
-            return () => {
-                window.removeEventListener('load', initialize);
-                if (initialize.themeCheckInterval) {
-                    clearInterval(initialize.themeCheckInterval);
-                }
-            };
         }
+
+        return () => {
+            window.removeEventListener('load', initialize);
+            window.removeEventListener('themeChange', handleThemeChange);
+            if (initialize.themeCheckInterval) {
+                clearInterval(initialize.themeCheckInterval);
+            }
+        };
     });
+
+
+    // onDestroy(() => {
+    //     window.removeEventListener('storage', handleStorageChange);
+    //     window.removeEventListener('resize', handleResize);
+    //     window.removeEventListener('themeChange', handleThemeChange);
+    //     // Remove global mouse event listeners
+    //     window.removeEventListener('mousemove', debouncedHandleMouseMove);
+    //     window.removeEventListener('mouseleave', handleMouseLeave);
+    //     if (animationId) {
+    //         cancelAnimationFrame(animationId);
+    //     }
+    //     if (initialize.themeCheckInterval) {
+    //         clearInterval(initialize.themeCheckInterval);
+    //     }
+    // });
+
 
     onDestroy(() => {
         window.removeEventListener('storage', handleStorageChange);
         window.removeEventListener('resize', handleResize);
-        // Remove global mouse event listeners
+        window.removeEventListener('themeChange', handleThemeChange);
         window.removeEventListener('mousemove', debouncedHandleMouseMove);
         window.removeEventListener('mouseleave', handleMouseLeave);
         if (animationId) {
@@ -278,6 +342,7 @@
             clearInterval(initialize.themeCheckInterval);
         }
     });
+
 </script>
 
 <style lang="scss">
@@ -289,18 +354,18 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        opacity: 0.3;
+        opacity: 0.4;
         pointer-events: none; /* Allow mouse events to pass through the canvas */
         z-index: 0; /* Place the canvas behind other elements */
     }
 
 
-    .dark {
-        canvas {
-            opacity: 0.9; 
-        }
+    // .dark {
+    //     canvas {
+    //         opacity: 0.4;
+    //     }
 
-    }
+    // }
 
 </style>
 

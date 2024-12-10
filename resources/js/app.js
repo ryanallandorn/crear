@@ -11,7 +11,11 @@ import { setupI18n } from './i18n';
 import './bootstrap';
 import '../scss/app.scss';
 
-import '../../node_modules/flyonui/dist/js/accordion.js';
+// import '../../node_modules/flyonui/dist/js/accordion.js';
+
+
+
+
 
 // import 'material-symbols';
 

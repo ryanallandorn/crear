@@ -6,6 +6,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title inertia>{{ config('app.name', 'Crear') }}</title>
+
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <!-- Load Fira Sans from Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        
+
+
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.svelte"])
         @inertiaHead

@@ -16,6 +16,7 @@
         import BlogSectionInstance from "@/Frontend/Components/Section/Instances/Blog.svelte";
         import ServicesCarouselInstance from "@/Frontend/Components/Section/Instances/ServicesCarousel.svelte";
         import PortfolioTeaser from "@/Frontend/Components/Section/Instances/PortfolioTeaser.svelte";
+        import ManifestoPane from "@/Frontend/Components/Section/Instances/ManifestoPane.svelte";
     
     
         // import ModalBox from '@components/UI/Modal/Box.svelte';
@@ -69,10 +70,61 @@
     
         <Main>
             <SectionDefault>
-                <ServicesCarouselInstance />
-            </SectionDefault>
-            <SectionDefault>
-                <PortfolioTeaser />
+
+                <ManifestoPane>
+
+                </ManifestoPane>
+
+
+
+                =====
+                Ethics / Morally bound
+                - We're not only mindful of what "ought" to do we to (being aware is half of it, understanding & bound)
+                =====
+                Integrity
+                - We do the right thing when no one is looking.
+                =====
+                Candor
+                - 
+                =====
+                Clarity
+                - 
+                =====
+                No haggling
+                - We've paid our dues.
+                =====
+                Sin regatear
+                - Ya pagamos el derecho del piso. 
+                =====
+                Mutual benefit
+                - 
+                =====
+                Positive Tension
+                - Growth happens when we're slighly out of our comfort zone.
+                =====
+                No-Fuss / Anti-drama
+                - 
+                =====
+                Efficiency isn't "more stuff faster" it's better outcomes with less or equal inputs
+                - 
+                =====
+                Simple is hard
+                - Elegant
+                =====
+                Pragmatic
+                - Elegant
+                =====
+                Propensity for action
+                - Elegant
+                =====
+                Perspective / Bias Prescriptive
+                - Elegant
+                =====
+                
+                
+                
+
+
             </SectionDefault>
             <SectionDefault>
                 <BlogSectionInstance />

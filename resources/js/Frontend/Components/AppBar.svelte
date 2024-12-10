@@ -25,16 +25,16 @@
     
 </script>
 
-<header class="fixed top-0 z-50 bg-white/50 dark:bg-gray-900/50 border-b-2 border-gray-200 dark:border-gray-700 w-full">
+<header class="fixed top-0 z-50 bg-white/80 dark:bg-gray-900/80 border-b-2 border-gray-200 dark:border-gray-700 w-full">
     <!-- Make the nav parent relative so the flyout can align to it -->
     <nav class="relative" aria-label="Global">
         <div class="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-16">
             <div class="flex flex-1">
-                <a href="/" class="-m-1.5 p-1.5 flex items-center principal-text-color">
+                <a href="/" class="-m-1.5 p-1.5 flex items-center principal-text-color text-2xl">
                     <span class="sr-only">crear</span>
                     <Sparkle />
                     <!-- <LogoIcon height="3rem" class="logo-svg h-8 w-auto"/> -->
-                    <span class="ml-2">
+                    <span class="ml-2 ">
                         crear
                     </span>
                 </a>
@@ -58,14 +58,14 @@
                     </div>
                 </FlyoutFullWidth>
 
-                <a href={'#'} class="nav-link">
+                <a href={route('manifesto')}  class="nav-link {isActiveRoute('manifesto') ? 'text-indigo-600 dark:text-indigo-400 font-semibold' : ''}">
                     <Scroll />
                     <span class="nav-text ml-1">
                         {$t('Manifesto')}
                     </span>
                 </a>
 
-                <a href={'#'} class="nav-link">
+                <a href={route('portfolio')} class="nav-link {isActiveRoute('portfolio') ? 'text-indigo-600 dark:text-indigo-400 font-semibold' : ''}">
                     <BriefcaseBusiness />
                     <span class="nav-text ml-1">
                         {$t('Portfolio')}

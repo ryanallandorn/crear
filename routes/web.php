@@ -26,7 +26,7 @@ Route::get('/services', function () {
 })->name('services');
 
 Route::get('/manifesto', function () {
-    return Inertia::render('Frontend/Manifesto', [
+    return Inertia::render('Frontend/Mainifesto', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -44,7 +44,7 @@ Route::get('/recursos', function () {
 })->name('resources');
 
 Route::get('/portfolio', function () {
-    return Inertia::render('Frontend/Services/ServicesMain', [
+    return Inertia::render('Frontend/Portfolio/PortfolioMain', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -61,8 +61,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    //
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+
+    //
+    Route::get('/kanban', function () {
+        return Inertia::render('Backend/Kanban');
+    })->name('kanban');
+
 });
 

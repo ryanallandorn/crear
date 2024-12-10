@@ -1,4 +1,9 @@
 <script>
+
+    // resources/js/Frontend/Components/Forms/Inputs/Text.svelte
+
+    import { t } from 'svelte-i18n';
+
     export let required = false;
     export let name = '';
     export let placeholder = '';

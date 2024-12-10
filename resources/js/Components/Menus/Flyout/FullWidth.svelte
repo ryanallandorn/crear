@@ -76,6 +76,10 @@
         class:scale-y-100={visible}
         class:opacity-0={!visible}
         class:scale-y-95={!visible}
+        class:hidden={!visible}
+        class:h-0={!visible}
+        class:h-auto={visible}
+         style="top: calc(100% + 2px); margin-bottom: {visible ? '-2px' : '0'};"
         on:mouseleave={( isDesktop && desktopTrigger === 'hover' ) ? closeFlyout : null}
     >
         <div class="mx-auto max-w-7xl px-6 py-10 lg:px-8">
@@ -84,10 +88,13 @@
     </div>
 {:else}
     {#if visible}
-        <div class="absolute inset-x-0 top-full w-screen bg-white shadow-lg ring-1 ring-gray-900/5">
-            <div class="mx-auto max-w-7xl px-6 py-10 lg:px-8">
-                <slot name="content" />
-            </div>
+    <div 
+        class="absolute inset-x-0 w-screen bg-white shadow-lg ring-1 ring-gray-900/5"
+        style="top: calc(100% + 2px); margin-bottom: -2px;"
+    >
+        <div class="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+            <slot name="content" />
         </div>
+    </div>
     {/if}
 {/if}

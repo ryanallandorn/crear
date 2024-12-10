@@ -7,7 +7,6 @@ import { t } from 'svelte-i18n';
 </script>
 
 
-Tenés info?
 
 <nav aria-label="Progress">
     <ol role="list" class="overflow-hidden">
@@ -88,16 +87,31 @@ Tenés info?
   </nav>
   
 
-<div class="p-4 mt-2 mb-4 rounded-lg shadow-md border">
-    <h3 class="text-xl principal-text-color mb-2">
-        Somos selectivos, no <em>"mala onda"</em>
-    </h3>
-    <ul class="principal-text-color leading-relaxed list-disc pl-5 space-y-2">
-        <li>
-            Protegemos nuestro tiempo mutuo para poder enfocarnos en crear los mejores resultados juntos.
-        </li>
-        <li>
-            Siempre intentaremos responder, incluso si sentimos que no somos una buena combinación. En ese caso, te lo haremos saber de manera honesta y respetuosa.
-        </li>
-    </ul>
+<div class="relative my-4">
+  <h3 class="text-2xl "> {$t('Tenés Detalles?')}</h3>
+  <p class="text-lg leading-snug font-medium text-gray-700 dark:text-gray-300 mb-4">
+    Brindando detalles concretos como tu presupuesto, expectativas, y objetivos nos ayuda avanzar de la forma más eficiente. Podrías contestar algunas preguntas?
+  </p>
+</div>
+
+
+<button
+  type="button"
+  class="relative inline-flex justify-center items-center gap-x-2 rounded-md bg-indigo-600 px-10 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full text-center"
+>
+  Adelante!
+</button>
+
+<div class="p-3 mt-8 mb-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+  <h3 class="text-l text-gray-400 dark:text-gray-400 mb-2">
+      Somos selectivos, no <em>"mala onda"</em>
+  </h3>
+  <ul class="text-gray-700 dark:text-gray-500 leading-snug list-disc pl-2 space-y-3 text-sm">
+      <li>
+          Protegemos nuestro tiempo mutuo para poder enfocarnos en crear los mejores resultados juntos.
+      </li>
+      <li>
+          Siempre intentaremos responder, incluso si sentimos que no somos una buena combinación. En ese caso, te lo haremos saber de manera honesta y respetuosa.
+      </li>
+  </ul>
 </div>

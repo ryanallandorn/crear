@@ -1,9 +1,5 @@
 <script>
-
-// resources/js/Components/UI/States/ColorSwitcher/Button.svelte
-
     import { onMount } from "svelte";
-
     import { Sun, Moon } from 'lucide-svelte';
 
     export let cssClasses = ""; // default to empty string if not provided
@@ -14,6 +10,9 @@
     function toggleTheme() {
         theme = theme === "light" ? "dark" : "light";
         applyTheme();
+        // Dispatch a global CustomEvent
+        const event = new CustomEvent("themeChange", { detail: { theme } });
+        window.dispatchEvent(event);
     }
 
     // Applies the theme to the document body

@@ -1,52 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Custom styles
+
+@use 'tailwind';
+@use 'reset';
+@use 'colors';
+@use 'nav';
+@use 'forms';
+@use 'kanban';
+
+// @import 'remixicon/fonts/remixicon.css';
+// @import "material-icons/iconfont/material-icons.css";
 
 
 
-[x-cloak] {
-    display: none;
-}
-
-
-@import 'remixicon/fonts/remixicon.css';
-@import "material-icons/iconfont/material-icons.css";
-
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
-
-
-@import 'nav';
-@import 'forms';
 
 
 
-// body {
-//     background:none !important;
-// }
-
-
-html body {
-    .hero,
-    main {
-        z-index:1;
-    }
-}
 
 
 
-.principal-text-color {
-    @apply text-balance tracking-tight text-gray-900 dark:text-gray-300
-}
-
-.secondary-text-color {
-    @apply text-balance tracking-tight text-gray-800 dark:text-gray-400
-}
-
-.hover-text-indigo {
-    @apply hover:text-indigo-500 dark:hover:text-indigo-300
-}
-
-.bg-50-default {
-    @apply bg-white/50 dark:bg-gray-900/50
-}
 

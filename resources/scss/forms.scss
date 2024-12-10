@@ -8,6 +8,58 @@
 }
 
 
+.input-outlined-1 {
+    @apply absolute left-3 top-3 text-gray-500 text-sm transition-all duration-200 ease-in-out pointer-events-none peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-500 peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-indigo-500
+}
+
+.input-outlined-2 {
+    @apply w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow
+}
+
+// .input-solid-primary {
+//     @apply block w-full rounded-md 
+//     bg-white dark:bg-gray-700
+//     outline-gray-300 dark:outline-gray-700
+//     text-gray-900 dark:text-gray-200
+//     px-3 py-1.5 text-base  outline outline-1 -outline-offset-1  placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
+// }
+
+
+.input-solid-primary {
+    @apply block rounded-md  px-2.5 pb-2.5 pt-5 w-full 
+    text-sm text-gray-900 dark:text-white
+    bg-gray-50 dark:bg-gray-700 
+    // Placeholder
+    placeholder-opacity-0 placeholder-transparent
+    // Borders
+    border-0 
+    //border-b-2 border-gray-300 
+    appearance-none dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 
+    // Outline / Border > Focus
+    focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600
+}
+
+
+.input-solid-2 {
+    @apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
+}
+
+
+.input-lg {
+    //@apply  px-4 py-3 text-lg
+
+}
+
+
+.input-floating-label {
+   @apply absolute text-sm 
+   // Color
+   text-gray-500 dark:text-gray-400 
+   // Color > Focus
+   peer-focus:text-indigo-600 peer-focus:dark:text-indigo-400
+   duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto
+}
+
 // Shared Borders Form
 
 .-space-y-px {
@@ -35,3 +87,12 @@
     }
 }
 
+
+
+.btn-toggle-password-visibility {
+    @apply absolute inset-y-0 right-3 flex items-center justify-center text-slate-500 
+    // hover
+    hover:text-slate-700 dark:hover:text-indigo-600
+    // focus
+    focus:outline-none focus:ring-0 focus:border-none active:outline-none active:ring-0 rounded transition
+}

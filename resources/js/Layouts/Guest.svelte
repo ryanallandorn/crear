@@ -5,13 +5,15 @@
     $: currentUrl = $page.url.pathname;
     import { router } from '@inertiajs/svelte';
     import ColorSwitcherFloating from '@components/UI/States/ColorSwitcher/Floating.svelte';
+    import DitheredBackground from "@frontend-components/DitheredBackground.svelte";
+    import ModalDialog from '@components//Modal/Dialog.svelte';
     
     function logout() {
         router.post('/logout');
     }
     </script>
     
-    <main 
+    <!-- <main 
         class={`w-full max-w-md mx-auto p-6 ${
             $page.url.startsWith('/login') 
                 ? 'mt-12' 
@@ -20,11 +22,16 @@
                     : ''
                 )
         }`}
+    > -->
+    <main
+        class="relative flex flex-col items-center justify-center min-h-screen max-w-md mx-auto p-6"
     >
         <slot />
         <ColorSwitcherFloating />
     </main>
     
+    <DitheredBackground />
+
     <!-- Alternative layout -->
     <!-- 
     <main class="container mx-auto max-w-4xl my-6 px-6 md:my-12">

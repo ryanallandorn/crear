@@ -4,15 +4,9 @@
 
     import { router } from "@inertiajs/svelte";
     import Appbar from "@frontend-components/AppBar.svelte";
-    import Hero from "@frontend-components/Hero/HeroDefault.svelte";
-    //import ColorSwitcher from "@components/UI/ColorSwitcher.svelte";
-    import ColorSwitcherFloating from '@components/UI/States/ColorSwitcher/Floating.svelte';
     import Footer from '@frontend-components/Footer/FooterDefault.svelte';
-
     import DitheredBackground from "@frontend-components/DitheredBackground.svelte";
-
-    import ModalDialog from '@components//Modal/Dialog.svelte';
-
+    // import ModalDialog from '@components//Modal/Dialog.svelte';
 
     function logout() {
         router.post('/logout');

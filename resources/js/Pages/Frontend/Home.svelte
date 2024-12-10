@@ -45,15 +45,15 @@
             <h4 class="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-300 sm:text-7xl">Ex Nihilo</h4>
         </div>
         <div slot="paragraph">
-            <div class="flex items-center justify-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-500 italic">sustantivo</span>
-                    <span class="text-sm text-gray-500">/ɛks ˈniː.hɪ.li.oʊ/</span>
-                    <span class="text-sm text-gray-500 italic">(latín)</span>
+            <div class="flex items-center justify-center space-x-4  flex-col">
+                <div class="flex items-center space-x-2 text-xl">
+                    <span class="text-gray-500 dark:text-gray-400 italic">sustantivo</span>
+                    <span class="text-gray-500 dark:text-gray-400">/ɛks ˈniː.hɪ.li.oʊ/</span>
+                    <span class="text-gray-500 italic dark:text-gray-400">(latín)</span>
                 </div>
             
                 <!-- Definition -->
-                <p class="flex text-gray-700 leading-relaxed">
+                <p class="flex text-gray-500 dark:text-gray-300 leading-relaxed text-2xl">
                     Refiere a algo creado desde la nada.
                 </p>
             </div>
