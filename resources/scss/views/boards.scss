@@ -1,0 +1,74 @@
+.wx-drop-area {
+    border: 2px dashed transparent;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.wx-drop-area:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark .wx-drop-area:hover {
+    border-color: #4f46e5; /* Tailwind Indigo-500 for dark mode */
+}
+
+.wx-controls-wrapper {
+    justify-content: flex-start;
+}
+
+.wx-add-card-btn {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.wx-add-card-btn:hover i {
+    transform: scale(1.2);
+}
+
+.wx-add-card-tip {
+    white-space: nowrap;
+}
+
+
+.wx-controls-wrapper {
+    justify-content: flex-start;
+}
+
+.wx-add-card-btn {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.wx-add-card-btn:hover .wx-icon {
+    transform: scale(1.2);
+}
+
+.wx-add-card-tip {
+    white-space: nowrap;
+}
+
+
+.boardRowColumn {
+    position: relative; /* Ensure positioning for pseudo-element */
+    @apply flex flex-col p-4 transition-all 
+    //  rounded shadow-md 
+}
+
+.boardRowColumn:not(:last-child)::after {
+    content: ""; /* Creates the visual separator */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px; /* Separator width */
+    background-color: #d1d5db; /* Tailwind Gray-300 */
+}
+
+.dark .boardRowColumn:not(:last-child)::after {
+    background-color: #4b5563; /* Tailwind Gray-600 for dark mode */
+}
+
+
+

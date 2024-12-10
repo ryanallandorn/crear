@@ -39,13 +39,11 @@
 
             <!-- Column Name -->
             {#if !isCollapsed(columnId)}
-                <div class="font-medium text-center flex-grow" data-action="rename">
-                    {rows[0].columns[columnId].name}
-                </div>
+                <div class="font-medium text-center flex-grow">{rows[0].columns[columnId].name}</div>
             {/if}
 
             <!-- More Options Icon -->
-            <div class="cursor-pointer" data-menu-id={columnId}>
+            <div class="cursor-pointer">
                 <MoreHorizontal class="text-gray-500 w-5 h-5" />
             </div>
         </div>

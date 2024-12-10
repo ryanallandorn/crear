@@ -5,13 +5,6 @@
     import BoardHeader from '@components/UI/Boards/Header/Header.svelte';
     import BoardRowInstance from '@components/UI/Boards/Row/RowInstance.svelte';
 
-    const columns = [
-        { id: 'backlog', name: 'Backlog' },
-        { id: 'inprogress', name: 'In Progress' },
-        { id: 'testing', name: 'Testing' },
-        { id: 'done', name: 'Done' },
-    ];
-
     const rows = [
         {
             name: 'Feature',
@@ -58,21 +51,16 @@
 
 <div class="g-wrap">
     <BoardToolbar />
-
-    <div id="root" class="wx-material-theme">
-        <div class="wx-kanban svelte-1lcmu6i" data-wx-widget="wx-kanban">
-            <div class="wx-content-wrapper svelte-1lcmu6i p-6" data-kanban-id="wx-kanban-content">
-                <div class="wx-content svelte-1lcmu6i" data-kanban-id="wx-kanban-scrollable-content">
+    <div id="root" class="wx-material-theme ">
+        <div class="wx-kanban" data-wx-widget="wx-kanban">
+            <div class="wx-content-wrapper p-6 bg-gray-100" data-kanban-id="wx-kanban-content">
+                <div class="wx-content" data-kanban-id="wx-kanban-scrollable-content">
                     <BoardHeader {rows} {collapsedColumns} {toggleColumn} />
                     {#each rows as row}
-                        <BoardRowInstance {row}></BoardRowInstance>
+                        <BoardRowInstance {row} {collapsedColumns} />
                     {/each}
                 </div>
             </div>
-            <div class="wx-sidebar svelte-hklxkj" data-kanban-id="wx-kanban-editor">
-                <div class="wx-editor sidebar main svelte-cokqxp" data-kanban-id="wx-kanban-editor"></div>
-            </div>
         </div>
-        <div class="wx-notices svelte-ervf1h"></div>
     </div>
 </div>
