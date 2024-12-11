@@ -76,6 +76,12 @@
                 </ManifestoPane>
 
 
+                
+                Format:
+                Catchy title
+                Quick paraphrase
+                Deeper explanation
+
 
                 =====
                 Ethics / Morally bound
@@ -94,7 +100,13 @@
                 - We've paid our dues.
                 =====
                 Sin regatear
+                ...
                 - Ya pagamos el derecho del piso. 
+                ...
+                - underselling nearly always only results in resentment and pooer outcomes
+                =====
+                Sin chamullo
+                - 
                 =====
                 Mutual benefit
                 - 
@@ -117,12 +129,21 @@
                 Propensity for action
                 - Elegant
                 =====
-                Perspective / Bias Prescriptive
+                Perspective
+                - One persepctive is never enough
+                =====
+                Bias
                 - Elegant
                 =====
+                Listen
+                - Answer what's being asked most directly before explaining
+                =====
                 
-                
-                
+                - perfect is enemy of good
+                - being effective is better than being right
+                - selective serioiusness
+                not taking ourselves too seriously, but we do when it matters
+
 
 
             </SectionDefault>

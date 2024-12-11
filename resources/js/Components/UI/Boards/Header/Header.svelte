@@ -1,51 +1,62 @@
 <script>
+
     // resources/js/Components/UI/Boards/Header/Header.svelte
 
     import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-svelte';
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 
     export let rows;
-    export let collapsedColumns;
-    export let toggleColumn;
+    export let collapsedColumns; // Receive collapsed columns as a prop
 
-    let uniqueColumns = Object.keys(rows[0].columns);
+    // Precompute collapsed state for each column
+    $: precomputedColumns = Object.keys(rows[0].columns).map(columnId => ({
+        id: columnId,
+        isCollapsed: collapsedColumns.has(columnId),
+    }));
 
-    function isCollapsed(columnId) {
-        return collapsedColumns.has(columnId);
-    }
+    // Generate grid template columns dynamically
+    $: gridTemplateColumns = precomputedColumns
+        .map(column => (column.isCollapsed ? '50px' : '1fr')) // Smaller width for collapsed columns
+        .join(' ');
+
+    const dispatchBoardColumnToggleChange = (columnId) => {
+        const isCollapsed = collapsedColumns.has(columnId);
+        dispatch('toggleBoardColumn', { columnId, isCollapsed: !isCollapsed }); // Notify parent of the change
+    };
+
 </script>
 
 <div
     class="grid w-full gap-4 bg-gray-100 border-b"
-    style="grid-template-columns: repeat({uniqueColumns.length}, minmax(0, 1fr));"
+    style="grid-template-columns: {gridTemplateColumns};"
 >
-    {#each uniqueColumns as columnId}
+    {#each precomputedColumns as column}
         <div
-            class="flex items-center justify-between p-4 bg-white rounded shadow-md"
-            data-id={columnId}
-            data-column-header={columnId}
+            class="boardHeaderColumn flex items-center justify-between p-4 bg-white rounded shadow-md"
+            class:boardColumnCollapsed={column.isCollapsed}
+            data-column-header={column.id}
         >
-            <!-- Collapse/Expand Icon -->
-            <div
+            <button
                 class="cursor-pointer"
-                data-action="collapse"
-                on:click={() => toggleColumn(columnId)}
+                on:click={() => dispatchBoardColumnToggleChange(column.id)}
+                aria-label={column.isCollapsed ? "Expand column" : "Collapse column"}
             >
-                {#if isCollapsed(columnId)}
+                {#if column.isCollapsed}
                     <ChevronRight class="text-gray-500 w-5 h-5" />
                 {:else}
                     <ChevronLeft class="text-gray-500 w-5 h-5" />
                 {/if}
-            </div>
-
-            <!-- Column Name -->
-            {#if !isCollapsed(columnId)}
-                <div class="font-medium text-center flex-grow">{rows[0].columns[columnId].name}</div>
+            </button>
+            {#if !column.isCollapsed}
+                <div class="font-medium text-center flex-grow">
+                    {rows[0].columns[column.id].name}
+                </div>
+                <button class="cursor-pointer" aria-label="More options">
+                    <MoreHorizontal class="text-gray-500 w-5 h-5" />
+                </button>
             {/if}
-
-            <!-- More Options Icon -->
-            <div class="cursor-pointer">
-                <MoreHorizontal class="text-gray-500 w-5 h-5" />
-            </div>
         </div>
     {/each}
 </div>

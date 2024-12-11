@@ -71,4 +71,31 @@
 }
 
 
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
 
+    // height: 100%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    @apply transform  h-full flex justify-center items-center 
+}
+
+.boardColumnCollapsed {
+    @apply w-10; /* Tailwind utility for fixed width when collapsed */
+    width: min-content; /* Additional width control for collapsed state */
+    //
+    // &.boardRowColumn {
+    //     padding:0;
+    // }
+}
+
+.boardHeaderColumn,
+.boardRowColumn {
+
+
+    &:not(.boardColumnCollapsed) {
+        @apply min-w-72; // max-w-96; /* Tailwind utility for minimum width when not collapsed */  
+    }
+}

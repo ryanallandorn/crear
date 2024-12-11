@@ -122,7 +122,7 @@
             }
         }
         
-        dispatch('toggleRow', {
+        dispatch('toggleBoardRow', {
             parentId: actualParentId,
             isExpanded,
             item

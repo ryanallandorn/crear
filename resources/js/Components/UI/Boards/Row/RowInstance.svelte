@@ -1,6 +1,5 @@
 <script>
-
-// resources/js/Components/UI/Boards/Row/RowInstance.svelte
+    // resources/js/Components/UI/Boards/Row/RowInstance.svelte
 
     import RowHeader from '@components/UI/Boards/Row/RowHeader.svelte';
     import RowContent from '@components/UI/Boards/Row/RowContent.svelte';
@@ -9,58 +8,58 @@
     export let row;
     export let collapsedColumns;
 
-    let rowName = row.name;
-    let isCollapsed = false;
+    let isRowCollapsed = false;
+    let columnsWithIds = [];
 
-    // Make columnsWithIds reactive by declaring it with let
-    let columnsWithIds = Object.entries(row.columns).map(([key, column], colIndex) => ({
-        id: `${row.name.toLowerCase().replace(/\s+/g, '')}-${key}-${colIndex}`,
-        ...column,
-        cards: column.cards.map((card, cardIndex) => ({
-            ...card,
-            id: `${row.name.toLowerCase().replace(/\s+/g, '')}-${cardIndex}`,
-        })),
-    }));
-
-    function toggleCollapse() {
-        isCollapsed = !isCollapsed;
+    // Process columns to ensure they have baseColumnId, uniqueColumnId, and pass collapse state
+    $: if (row && row.columns) {
+        columnsWithIds = Object.entries(row.columns).map(([key, column]) => {
+            const baseColumnId = column.id || key; // Generic identifier (e.g., 'testing')
+            const uniqueColumnId = `${row.name.toLowerCase().replace(/\s+/g, '')}-${baseColumnId}`; // Unique across swimlanes
+            return {
+                ...column,
+                baseColumnId,
+                uniqueColumnId,
+                isCollapsed: collapsedColumns.has(baseColumnId), // Check baseColumnId in collapsedColumns
+            };
+        });
     }
 
-    function moveCard(event) {
-        const { cardId, sourceColumnId, targetColumnId } = event.detail;
-        
-        // Find source column
-        const sourceColumn = columnsWithIds.find((col) => col.id === sourceColumnId);
-        if (!sourceColumn) return;
+    // Generate grid template columns dynamically
+    $: gridTemplateColumns = columnsWithIds
+        .map(column => (column.isCollapsed ? '50px' : '1fr')) // Smaller width for collapsed columns
+        .join(' ');
 
-        // Remove card from source column
-        sourceColumn.cards = sourceColumn.cards.filter((card) => card.id !== cardId);
-        
-        // Force reactivity update
-        columnsWithIds = [...columnsWithIds];
+    const toggleBoardRowCollapse = () => {
+        isRowCollapsed = !isRowCollapsed;
+    };
+
+    $: {
+        // Log collapsed columns for debugging
+        console.log('collapsedColumns changed:', Array.from(collapsedColumns));
     }
 </script>
 
-<div class="wx-row w-full" on:moveCard={moveCard}>
-    <RowHeader {rowName} {isCollapsed} on:toggle={toggleCollapse} />
+<div class="wx-row w-full">
+    <RowHeader 
+        rowName={row.name} 
+        isCollapsed={isRowCollapsed} 
+        on:toggleBoardRow={toggleBoardRowCollapse} 
+    />
 
-    {#if !isCollapsed}
+    {#if !isRowCollapsed}
         <RowContent>
-            {#if columnsWithIds.length > 0}
-                <div
-                    class="grid w-full gap-4 p-4"
-                    style="grid-template-columns: repeat({columnsWithIds.length}, minmax(0, 1fr));"
-                >
-                    {#each columnsWithIds as column (column.id)}
-                        <RowColumn 
-                            {column} 
-                            isCollapsed={collapsedColumns.has(column.id)} 
-                        />
-                    {/each}
-                </div>
-            {:else}
-                <div class="p-4 text-gray-500 text-center">No columns available for this row.</div>
-            {/if}
+            <div
+                class="grid w-full gap-4 p-4"
+                style="grid-template-columns: {gridTemplateColumns};"
+            >
+                {#each columnsWithIds as column (column.uniqueColumnId)}
+                    <RowColumn 
+                        {column}
+                        isBoardColumnCollapsed={collapsedColumns.has(column.baseColumnId)}
+                    />
+                {/each}
+            </div>
         </RowContent>
     {/if}
 </div>

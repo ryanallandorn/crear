@@ -10,8 +10,8 @@
 
     const dispatch = createEventDispatcher();
 
-    function handleToggle() {
-        dispatch('toggle');
+    function handleRowToggle() {
+        dispatch('toggleBoardRow');
     }
 </script>
 
@@ -22,7 +22,7 @@
     <button 
         type="button"
         class="wx-label-icon svelte-9z9yku"
-        on:click={handleToggle}
+        on:click={handleRowToggle}
     >
         {#if isCollapsed}
             <ChevronUp class="wx-icon" />
